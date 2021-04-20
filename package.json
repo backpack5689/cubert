@@ -1,0 +1,25 @@
+{
+  "name": "cubert",
+  "version": "1.0.0",
+  "description": "A website for Rubiks Cube scrambles and competing with friends",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/backpack5689/cubert.git"
+  },
+  "keywords": [
+    "mean",
+    "mongodb",
+    "angular",
+    "express"
+  ],
+  "author": "Jonny Hughes, Brian Johnson, Aaron Thompson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/backpack5689/cubert/issues"
+  },
+  "homepage": "https://github.com/backpack5689/cubert#readme"
+}

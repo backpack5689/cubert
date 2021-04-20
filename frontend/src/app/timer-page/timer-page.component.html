@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+  <title></title>
+</head>
+<body>
+  <div class="navbar">
+    <ul>
+      <li><a routerLink="/timer">Home</a></li>
+      <li><a routerLink="/stats">Stats</a></li>
+	  <li style="float: right;"><a routerLink="/profile">Profile</a></li>
+      <li style="float: right;"><a href="logout.js">Logout</a></li>
+    </ul>
+  </div>
+  <div class="scramble">
+    <p>{{scramble}}</p>
+	<button (click)="generateScramble()">Generate Scramble</button>
+  </div>
+  <div class="stats">
+    <p>{{Users[0].user_statbest || "No stat found"}}</p>
+    <p>Stat 2</p>
+    <p>Stat n</p>
+    <p>Stat n</p>
+    <p>Stat n</p>
+    <p>Stat n</p>
+    <p>Stat n</p>
+    <p>Stat n</p>
+  </div>
+  <div class="timer">
+    <p>{{displayedTime}}</p>
+	<button (click)="startTimer()">Start</button>
+	<button (click)="stopTimer()">Stop</button>
+	<button (click)="resetTimer()">Reset</button>
+  </div>
+  <div class="room">
+    <p>Room Info</p>
+  </div>
+</body>
+<footer>
+
+
+</footer>
+
+<router-outlet></router-outlet>

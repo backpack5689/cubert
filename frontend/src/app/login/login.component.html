@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+
+  <div class="navbar">
+    <ul>
+      <li><a routerLink="/timer">Home</a></li>
+      <li><a routerLink="/stats">Stats</a></li>
+      <li style="float: right;"><a routerLink="/profile">Profile</a></li>
+      <li style="float: right;"><a href="logout.js">Logout</a></li>
+    </ul>
+  </div>
+  <h1>Login to your account</h1>
+  <form>
+    <p>Username</p>
+    <input [(ngModel)] = "username">
+    <p>Password</p>
+    <input [(ngModel)] = "password">
+    <input type="submit" (click)="onAddPost()">
+  </form>
+</body>
+<footer>
+
+
+</footer>

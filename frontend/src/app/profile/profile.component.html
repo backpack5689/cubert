@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+
+  <div class="navbar">
+    <ul>
+      <li><a routerLink="/timer">Home</a></li>
+      <li><a routerLink="/stats">Stats</a></li>
+      <li style="float: right;"><a routerLink="/profile">Profile</a></li>
+      <li style="float: right;"><a href="logout.js">Logout</a></li>
+    </ul>
+  </div>
+  <h1>Welcome {{ '{' }}username{{ '}' }}!</h1>
+  <div class="profile-personalinfo">
+    <h2>Personal Information</h2>
+    <p>Change first name:</p>
+    <input>
+    <p>Change last name:</p>
+    <input>
+    <p>Change email:</p>
+    <input>
+    <input type="submit">
+  </div>
+  <div class="profile-userinfo">
+    <h2>User Information</h2>
+    <p>Change username:</p>
+    <input>
+    <p>Change friendcode:</p>
+    <input>
+    <p>Change password</p>
+    <p>Old password: <input><br>
+    New password: <input><br>
+    Confirm new password: <input></p>
+    <p>Change profile picture:</p>
+    <input type="file" id="profilephoto" name="profilepic">
+    <input type="submit">
+  </div>
+</body>
+<footer>
+
+
+</footer>
+

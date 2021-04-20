@@ -1,0 +1,126 @@
+/*  Class CSS 
+    9090CC2, 084887, F58A07, F9AB55, F7F5FB */
+
+h1, h2, h3, p, li{
+  font-family:Arial, Helvetica, sans-serif;
+}
+.navbar{
+  background-color: #F7F5FB;
+  padding: 1px;
+}
+li{
+  list-style-type: none;
+  display: inline;
+}
+li a{
+  display: inline block;
+  padding: 12px;
+  font-size: 20px;
+  color: #000000;
+  text-decoration: none;
+}
+li a:hover{
+  background-color: #909CC2;
+  color: #FFFFFF;
+}
+
+
+.scramble{
+  float: left;
+  text-align: center;
+  width: 52%;
+  border: 3px solid purple;
+  border-radius: 10px;
+  background-color: purple;
+  color: #FFFFFF;
+  font-size: 28px;
+}
+
+
+.timer{
+  float: left;
+  text-align: center;
+  width: 52%;
+  border: 3px solid #084887;
+  border-radius: 10px;
+  background-color: #084887;
+  color: #FFFFFF;
+  font-size: 40px;
+}
+
+
+.stats{
+  float: right;
+  text-align: left;
+  width: 38%;
+  border: 3px solid #F58A07;
+  border-radius: 10px;
+  background-color: #F58A07;
+  color: #FFFFFF;
+  font-size: 28px;
+}
+
+
+.room{
+  float: left;
+  text-align: left;;
+  width: 52%;
+  border: 3px solid green;
+  border-radius: 10px;
+  background-color: green;
+  color: #FFFFFF;
+  font-size: 40px;
+}
+
+.stat_graph{
+  float: left;
+  width: 52%;
+  background-color: #084887;
+  text-align: center;
+  color: #F7F5FB;
+  border: 3px solid #084887;
+  border-radius: 10px;
+  font-size: 40px;
+}
+
+.room_records{
+  float: left;
+  text-align: center;
+  width: 52%;
+  border: 3px solid green;
+  border-radius: 10px;
+  background-color: green;
+  color: #FFFFFF;
+  font-size: 40px;
+}
+
+/*
+*
+*
+* Profile.html specific CSS
+*
+*
+*/
+
+.profile-personalinfo{
+  float: left;
+  text-align: left;
+  padding-bottom: 4px;
+  border: 3px solid #F58A07;
+  border-radius: 10px;
+  background-color: #F58A07;
+  color: #FFFFFF;
+  font-size: 18px;
+}
+
+
+.profile-userinfo{
+  float: right;
+  text-align: left;
+  padding-bottom: 4px;
+  border: 3px solid #084887;
+  border-radius: 10px;
+  background-color: #084887;
+  color: #FFFFFF;
+  font-size: 18px;
+}

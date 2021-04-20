@@ -7,12 +7,18 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+	
+	username: any;
+	password: any;
 
   constructor(
 	private route: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
+  }
+  
+  onAddPost(): void {
   }
 
 }

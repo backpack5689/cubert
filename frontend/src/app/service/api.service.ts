@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Md5 } from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root'
@@ -33,14 +34,12 @@ export class ApiService {
   }
 
   // Login
-  loginUser(username, password): Observable<any> {
-    dbPass = this.http.get(`/login`); // Fetches the password stored in the Database
-    if(md5(password) == dbPass){
-      return sessionID;
-    }
-    return 0;
+  // loginUser(username: any, password : any): Observable<any> {
+    // let dbPass = this.http.get(`/login`); // Fetches the password stored in the Database
+    // if(Md5.hashStr(password) == dbPass){
+      // return null;
+    // }
 
-
-    return this.http.post(`${this.baseUri}/login`);
-  }
+    // return this.http.post(`${this.baseUri}/login`);
+  // }
 }

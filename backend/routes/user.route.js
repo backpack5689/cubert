@@ -9,28 +9,34 @@ let User = require('../models/User');
 userRoute.route('/create').post((req, res, next) => {
   User.create(req.body, (error, data) => {
     if (error) {
-      return next(error)
+      return next(error);
     } else {
-      res.json(data)
+      res.json(data);
     }
   })
-});
+})
 
 // Get All Employees
 userRoute.route('/').get((req, res) => {
   User.find((error, data) => {
     if (error) {
-      return next(error)
+      return next(error);
     } else {
-      res.json(data)
+      res.json(data);
     }
   })
 })
 
 // login
-userRoute.route('/login').post() => {
-
-
+userRoute.route('/login').post((req, res, next) => {
+  User.find({ user_email: req.body.username }, (error, data) => {
+    if (error) {
+      return next(error)
+    } else {
+	  
+      res.json(data);
+    }
+  })
 });
 
 

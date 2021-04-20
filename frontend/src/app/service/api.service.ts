@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 
 export class ApiService {
-	baseUri: string = 'http://3.131.25.140:4000/api';
+	baseUri: string = 'http://localhost:4000/api';
 	headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
@@ -33,14 +33,9 @@ export class ApiService {
   }
 
   // Login
-  loginUser(username, password): Observable<any> {
-    dbPass = this.http.get(`/login`); // Fetches the password stored in the Database
-    if(md5(password) == dbPass){
-      return sessionID;
-    }
-    return 0;
-
-
-    return this.http.post(`${this.baseUri}/login`);
+  loginUser(username: string, password: string): Observable<any> {
+    let dbPass = this.http.post(`${this.baseUri}/login`, { username, password });
+	
+	return dbPass;
   }
 }

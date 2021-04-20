@@ -9,7 +9,7 @@ import { ApiService } from './../service/api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-	
+
   constructor(
 	private route: ActivatedRoute,
 	private apiService: ApiService,
@@ -19,8 +19,15 @@ export class LoginComponent implements OnInit {
   }
 
   onAddPost(): void {
-	  this.apiService.loginUser("haha@1234.com", "1234").subscribe((data) => {
-		  //this.response = data;
+    let usernameinput = (document.getElementById("username") as HTMLInputElement).value;
+    let passwordinput = (document.getElementById("password") as HTMLInputElement).value;
+	  this.apiService.loginUser(usernameinput, passwordinput).subscribe((data) => {
+		  if(data._id == -1)
+      {
+        alert("Your shit didn't work");
+      }else{
+        alert("Your shit worked");
+      }
 	  });
   }
 

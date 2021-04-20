@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/luxmage/cubert/frontend/src/main.ts */"zUnb");
+module.exports = __webpack_require__(/*! /mnt/c/Users/aaron/Desktop/Projects/cubert/frontend/src/main.ts */"zUnb");
 
 
 /***/ }),
@@ -255,7 +255,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApiService", function() { return ApiService; });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "qCKp");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "tk/3");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "fXoL");
+/* harmony import */ var ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ts-md5/dist/md5 */ "kScs");
+/* harmony import */ var ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "fXoL");
+
 
 
 
@@ -263,8 +266,15 @@ __webpack_require__.r(__webpack_exports__);
 class ApiService {
     constructor(http) {
         this.http = http;
-        this.baseUri = 'http://localhost:4000/api';
+        this.testinglocally = 1;
+        this.baseUri = '';
         this.headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]().set('Content-Type', 'application/json');
+        if (this.testinglocally == 1) {
+            this.baseUri = 'http://localhost:4000/api';
+        }
+        else {
+            this.baseUri = 'http://3.131.25.140:4000/api';
+        }
     }
     // Error handling
     errorMgmt(error) {
@@ -286,12 +296,13 @@ class ApiService {
     }
     // Login
     loginUser(username, password) {
-        let dbPass = this.http.post(`${this.baseUri}/login`, { username, password });
+        let hashword = ts_md5_dist_md5__WEBPACK_IMPORTED_MODULE_2__["Md5"].hashStr(password);
+        let dbPass = this.http.post(`${this.baseUri}/login`, { username, hashword });
         return dbPass;
     }
 }
-ApiService.ɵfac = function ApiService_Factory(t) { return new (t || ApiService)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
-ApiService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({ token: ApiService, factory: ApiService.ɵfac, providedIn: 'root' });
+ApiService.ɵfac = function ApiService_Factory(t) { return new (t || ApiService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"])); };
+ApiService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({ token: ApiService, factory: ApiService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -638,8 +649,15 @@ class LoginComponent {
     ngOnInit() {
     }
     onAddPost() {
-        this.apiService.loginUser("haha@1234.com", "1234").subscribe((data) => {
-            //this.response = data;
+        let usernameinput = document.getElementById("username").value;
+        let passwordinput = document.getElementById("password").value;
+        this.apiService.loginUser(usernameinput, passwordinput).subscribe((data) => {
+            if (data._id == -1) {
+                alert("Your shit didn't work");
+            }
+            else {
+                alert("Your shit worked");
+            }
         });
     }
 }

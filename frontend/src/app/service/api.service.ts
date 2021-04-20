@@ -2,16 +2,25 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {Md5} from 'ts-md5/dist/md5';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ApiService {
-	baseUri: string = 'http://localhost:4000/api';
+
+  testinglocally:number = 1;
+  baseUri:string = '';
 	headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+      if(this.testinglocally == 1) {
+        this.baseUri = 'http://localhost:4000/api';
+      } else {
+        this.baseUri = 'http://3.131.25.140:4000/api';
+      }
+    }
 
 	// Error handling
 	errorMgmt(error: HttpErrorResponse) {
@@ -34,8 +43,8 @@ export class ApiService {
 
   // Login
   loginUser(username: string, password: string): Observable<any> {
-    let dbPass = this.http.post(`${this.baseUri}/login`, { username, password });
-	
-	return dbPass;
+    let hashword = Md5.hashStr(password);
+    let dbPass = this.http.post(`${this.baseUri}/login`, { username, hashword });
+  	return dbPass;
   }
 }

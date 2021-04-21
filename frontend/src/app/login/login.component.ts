@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { ApiService } from './../service/api.service';
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
 	private route: ActivatedRoute,
 	private apiService: ApiService,
+	private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -32,7 +34,8 @@ export class LoginComponent implements OnInit {
       {
         alert("Account unavailable.");
       }else{
-        alert("Successfully logged in.");
+        sessionStorage.setItem("_id", data._id);
+		this.router.navigate(['/timer']);
       }
 	  });
   }

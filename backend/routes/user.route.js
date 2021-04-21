@@ -41,7 +41,7 @@ userRoute.route('/login').post((req, res, next) => {
 	  {
 		if(req.body.hashword == data[0].user_password)
         {
-		  res.json(data[0]._id);
+		  res.json({_id: data[0]._id});
         } else {
           res.json({_id: -1});
         }  

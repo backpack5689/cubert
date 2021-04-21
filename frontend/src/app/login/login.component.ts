@@ -22,11 +22,11 @@ export class LoginComponent implements OnInit {
     let usernameinput = (document.getElementById("username") as HTMLInputElement).value;
     let passwordinput = (document.getElementById("password") as HTMLInputElement).value;
 	  this.apiService.loginUser(usernameinput, passwordinput).subscribe((data) => {
-		  if(data._id == -1)
+		  if(data._id < 0)
       {
-        alert("Your shit didn't work");
+        alert("Account unavailable.");
       }else{
-        alert("Your shit worked");
+        alert("Successfully logged in.");
       }
 	  });
   }

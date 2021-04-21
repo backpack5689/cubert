@@ -10,7 +10,7 @@ import {Md5} from 'ts-md5/dist/md5';
 
 export class ApiService {
 
-  testinglocally:number = 1;
+  testinglocally:number = 0;
   baseUri:string = '';
 	headers = new HttpHeaders().set('Content-Type', 'application/json');
 

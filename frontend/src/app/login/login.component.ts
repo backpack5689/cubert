@@ -10,9 +10,6 @@ import { ApiService } from './../service/api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-	
-	username: any;
-	password: any;
 
   constructor(
 	private route: ActivatedRoute,
@@ -21,9 +18,6 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-  }
-  
-  onAddPost(): void {
   }
 
   onAddPost(): void {

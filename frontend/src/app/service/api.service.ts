@@ -9,10 +9,18 @@ import { Md5 } from 'ts-md5/dist/md5';
 })
 
 export class ApiService {
-	baseUri: string = 'http://3.131.25.140:4000/api';
+
+  testinglocally:number = 0;
+  baseUri:string = '';
 	headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+      if(this.testinglocally == 1) {
+        this.baseUri = 'http://localhost:4000/api';
+      } else {
+        this.baseUri = 'http://3.131.25.140:4000/api';
+      }
+    }
 
 	// Error handling
 	errorMgmt(error: HttpErrorResponse) {
@@ -34,12 +42,9 @@ export class ApiService {
   }
 
   // Login
-  // loginUser(username: any, password : any): Observable<any> {
-    // let dbPass = this.http.get(`/login`); // Fetches the password stored in the Database
-    // if(Md5.hashStr(password) == dbPass){
-      // return null;
-    // }
-
-    // return this.http.post(`${this.baseUri}/login`);
-  // }
+  loginUser(username: string, password: string): Observable<any> {
+    let hashword = Md5.hashStr(password);
+    let dbPass = this.http.post(`${this.baseUri}/login`, { username, hashword });
+  	return dbPass;
+  }
 }

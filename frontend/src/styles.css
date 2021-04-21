@@ -25,6 +25,19 @@ li a:hover{
   color: #FFFFFF;
 }
 
+li button{
+  display: inline block;
+  font-size: 20px;
+  background-color: #F7F5FB;
+  color: #000000;
+  text-decoration: none;
+  border: none;
+}
+
+li button:hover{
+  background-color: #909CC2;
+  color: #FFFFFF;
+}
 
 .scramble{
   float: left;

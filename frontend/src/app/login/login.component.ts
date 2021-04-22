@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { ApiService } from './../service/api.service';
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(
 	private route: ActivatedRoute,
 	private apiService: ApiService,
+	private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -22,11 +24,12 @@ export class LoginComponent implements OnInit {
     let usernameinput = (document.getElementById("username") as HTMLInputElement).value;
     let passwordinput = (document.getElementById("password") as HTMLInputElement).value;
 	  this.apiService.loginUser(usernameinput, passwordinput).subscribe((data) => {
-		  if(data._id == -1)
+		  if(data._id < 0)
       {
-        alert("Your shit didn't work");
+        alert("Account unavailable.");
       }else{
-        alert("Your shit worked");
+        sessionStorage.setItem("_id", data._id);
+		this.router.navigate(['/timer']);
       }
 	  });
   }

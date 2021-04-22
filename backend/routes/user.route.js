@@ -33,12 +33,19 @@ userRoute.route('/login').post((req, res, next) => {
     if (error) {
       return next(error)
     } else {
-      if(req.body.hashword == data.user_password)
-      {
-        res.json(data._id);
-      } else {
-        res.json({_id: -1});
-      }
+	  if (data[0] === undefined)
+	  {
+		  res.json({_id: -2});
+	  }
+	  else
+	  {
+		if(req.body.hashword == data[0].user_password)
+        {
+		  res.json({_id: data[0]._id});
+        } else {
+          res.json({_id: -1});
+        }  
+	  }
     }
   })
 });

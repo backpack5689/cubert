@@ -11,6 +11,7 @@ import { ApiService } from './../service/api.service';
 export class TimerPageComponent implements OnInit {
 
   Users: any = [];
+  signedIn: boolean = false;
   
   // Timer variables
   displayedTime: string = "00:00.000"; // This variable is actually displayed on the page
@@ -28,10 +29,12 @@ export class TimerPageComponent implements OnInit {
   constructor(
 	private route: ActivatedRoute,
 	private apiService: ApiService,
+	private router: Router,
   ) {}
 
   ngOnInit(): void {
-	  this.getUsers()
+	  this.getUsers();
+	  this.signedIn = sessionStorage.getItem("_id") !== null;
   }
   
   // Timer Code ------------------------------------------------------
@@ -109,6 +112,14 @@ export class TimerPageComponent implements OnInit {
 	  this.apiService.getUsers().subscribe((data) => {
 		  this.Users = data;
 	  });
+  }
+  
+  // Log out
+  logOut(): void {
+	  sessionStorage.removeItem("_id");
+	  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+	  this.router.onSameUrlNavigation = 'reload';
+	  this.router.navigate([this.router.url]);
   }
 
 }

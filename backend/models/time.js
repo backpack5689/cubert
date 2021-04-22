@@ -3,29 +3,14 @@ const Schema = mongoose.Schema;
 
 // Define collection and schema
 let Time = new Schema({
-   time_fname: {
+   time_scramble: {
       type: String
    },
-   time_lname: {
-      type: String
+   time_completedate: {
+      type: Date
    },
-   time_displayname: {
-      type: String
-   },
-   time_email: {
-      type: String
-   },
-   time_password: {
-      type: String
-   },
-   time_roomcode: {
+   time_seconds: {
       type: Number
-   },
-   time_friendid: {
-      type: String
-   },
-   time_statbest: {
-      type: String
    },
    user_id: {
       type: String
@@ -34,4 +19,4 @@ let Time = new Schema({
    collection: 'time'
 })
 
-module.exports = mongoose.model('User', User)
+module.exports = mongoose.model('Time', Time)

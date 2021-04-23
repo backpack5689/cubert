@@ -6,7 +6,7 @@ const userRoute = express.Router();
 let User = require('../models/User');
 
 // Add User
-userRoute.route('/create').post((req, res, next) => {
+userRoute.route('/user/create').post((req, res, next) => {
   User.create(req.body, (error, data) => {
     if (error) {
       return next(error);
@@ -17,7 +17,7 @@ userRoute.route('/create').post((req, res, next) => {
 })
 
 // Get All Employees
-userRoute.route('/').get((req, res) => {
+userRoute.route('/user/').get((req, res) => {
   User.find((error, data) => {
     if (error) {
       return next(error);
@@ -28,7 +28,7 @@ userRoute.route('/').get((req, res) => {
 })
 
 // login
-userRoute.route('/login').post((req, res, next) => {
+userRoute.route('/user/login').post((req, res, next) => {
   User.find({ user_email: req.body.username }, (error, data) => {
     if (error) {
       return next(error)

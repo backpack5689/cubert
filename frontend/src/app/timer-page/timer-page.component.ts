@@ -55,6 +55,7 @@ export class TimerPageComponent implements OnInit {
   }
   
   resetTimer(): void {
+	  this.apiService.addTime(sessionStorage.getItem("_id"), { time_scramble: this.scramble, time_completedate: new Date(), time_completetime: this.displayedTime, user_id: sessionStorage.getItem("_id") }).subscribe();
 	  this.time = 0;
 	  this.update();
   }

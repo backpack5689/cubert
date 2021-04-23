@@ -10,7 +10,7 @@ import { ApiService } from './../service/api.service';
 })
 export class TimerPageComponent implements OnInit {
 
-  Users: any = [];
+  userTimes: any = [];
   signedIn: boolean = false;
   
   // Timer variables
@@ -33,8 +33,12 @@ export class TimerPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-	  this.getUsers();
 	  this.signedIn = sessionStorage.getItem("_id") !== null;
+	  if (this.signedIn) {
+		  this.apiService.getUserTimes(sessionStorage.getItem("_id")).subscribe((data) => {
+			  this.userTimes = data;
+		  });
+	  }
   }
   
   // Timer Code ------------------------------------------------------
@@ -56,6 +60,9 @@ export class TimerPageComponent implements OnInit {
   
   resetTimer(): void {
 	  this.apiService.addTime(sessionStorage.getItem("_id"), { time_scramble: this.scramble, time_completedate: new Date(), time_completetime: this.displayedTime, user_id: sessionStorage.getItem("_id") }).subscribe();
+	  this.apiService.getUserTimes(sessionStorage.getItem("_id")).subscribe((data) => {
+			  this.userTimes = data;
+		  });
 	  this.time = 0;
 	  this.update();
   }
@@ -107,13 +114,6 @@ export class TimerPageComponent implements OnInit {
   }
   
   // --------------------------------------------------------------------
-  
-  // Stat Fetch Code ----------------------------------------------------
-  getUsers(): void {
-	  this.apiService.getUsers().subscribe((data) => {
-		  this.Users = data;
-	  });
-  }
   
   // Log out
   logOut(): void {

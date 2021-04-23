@@ -17,14 +17,9 @@
 	<button (click)="generateScramble()">Generate Scramble</button>
   </div>
   <div class="stats" *ngIf="signedIn">
-    <p>{{Users[0].user_statbest || "No stat found"}}</p>
-    <p>Stat 2</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
+	<div *ngFor="let userTime of userTimes">
+	  <p>{{userTime.time_completetime}}</p>
+	</div>
   </div>
   <div class="timer">
     <p>{{displayedTime}}</p>

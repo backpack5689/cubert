@@ -50,7 +50,7 @@ export class ApiService {
   }
 
   // Pull all time associated with a specific user
-  getUserTimes(user_id: string): Observable<any> {
+  getUserTimes(user_id: string | null): Observable<any> {
     return this.http.get(`${this.baseUri}/time/${user_id}`);
   }
 

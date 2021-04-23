@@ -7,7 +7,7 @@ let Time = require('../models/Time');
 
 // Add time to database
 timeRoute.route('/time/create').post((req, res, next) => {
-  Time.create(req.body, (error, data) => {
+  Time.create(req.body.time, (error, data) => {
     if (error) {
       return next(error);
     } else {

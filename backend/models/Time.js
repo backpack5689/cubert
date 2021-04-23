@@ -9,8 +9,8 @@ let Time = new Schema({
    time_completedate: {
       type: Date
    },
-   time_seconds: {
-      type: Number
+   time_completetime: {
+      type: String
    },
    user_id: {
       type: String

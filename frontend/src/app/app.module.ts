@@ -8,6 +8,7 @@ import { TimerPageComponent } from './timer-page/timer-page.component';
 import { LoginComponent } from './login/login.component';
 import { StatsComponent } from './stats/stats.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SignUpComponent } from './signUp/signUp.component';
 
 import { ApiService } from './service/api.service';
 
@@ -16,6 +17,7 @@ import { ApiService } from './service/api.service';
     AppComponent,
     TimerPageComponent,
     LoginComponent,
+    SignUpComponent,
     StatsComponent,
     ProfileComponent
   ],

@@ -11,15 +11,19 @@
       <!--<li style="float: right;"><a href="logout.js">Logout</a></li>-->
     </ul>
   </div>
-  <h1>Login to your account</h1>
+  <h1>Create a new account</h1>
   <form>
     <p>Email</p>
     <input id="username">
+    <p>First Name</p>
+    <input id="firstname">
+    <p>Last Name</p>
+    <input id="lastname">
     <p>Password</p>
     <input id="password">
-    <button type="button" (click)="onAddPost()">Submit</button>
-    <p>Or create a new account now!</p>
-    <button type="button" (click)="signUp()">Sign Up</button>
+    <p>Confirm Password</p>
+    <input id="confirmpassword">
+    <button type="button" (click)="signUp()">Submit</button>
   </form>
 </body>
 <footer>

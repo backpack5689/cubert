@@ -4,6 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {Md5} from 'ts-md5/dist/md5';
 import { Time } from '@angular/common';
+import { ɵangular_packages_platform_browser_dynamic_platform_browser_dynamic_a } from '@angular/platform-browser-dynamic';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,12 @@ export class ApiService {
     let hashword = Md5.hashStr(password);
     let dbPass = this.http.post(`${this.baseUri}/user/login`, { username, hashword });
   	return dbPass;
+  }
+
+  // Create User
+  createUser(username: string, firstname: string, lastname: string, password: string): Observable<any> {
+    let hashword = Md5.hashStr(password);
+    return this.http.post(`${this.baseUri}/user/create`, { username, hashword });
   }
 
   // Pull all time associated with a specific user

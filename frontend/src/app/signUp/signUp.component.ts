@@ -27,7 +27,9 @@ export class SignUpComponent implements OnInit {
     let passwordinput = (document.getElementById("password") as HTMLInputElement).value;
 	  let confirmpasswordinput = (document.getElementById("confirmpassword") as HTMLInputElement).value;
     if (passwordinput == confirmpasswordinput) {
-      this.apiService.createUser(usernameinput, firstnameinput, lastnameinput, passwordinput).subscribe()
+      this.apiService.createUser(usernameinput, firstnameinput, lastnameinput, passwordinput).subscribe((data) => {
+		 sessionStorage.setItem("_id", data._id);
+	  });
       this.router.navigate(['/timer']);
     } else {
       alert("Passwords do not match");

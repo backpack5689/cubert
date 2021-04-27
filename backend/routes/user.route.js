@@ -7,7 +7,7 @@ let User = require('../models/User');
 
 // Add User
 userRoute.route('/user/create').post((req, res, next) => {
-  User.create(req.body, (error, data) => {
+  User.create({ user_email: req.body.username, user_fname: req.body.firstname, user_lname: req.body.lastname, user_password: req.body.hashword, user_roomcode: -1, user_friendid: "", user_statbest: "", user_statbesto5: "" }, (error, data) => {
     if (error) {
       return next(error);
     } else {

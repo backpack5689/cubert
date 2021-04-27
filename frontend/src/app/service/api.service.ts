@@ -53,7 +53,8 @@ export class ApiService {
   // Create User
   createUser(username: string, firstname: string, lastname: string, password: string): Observable<any> {
     let hashword = Md5.hashStr(password);
-    return this.http.post(`${this.baseUri}/user/create`, { username, hashword });
+    return this.http.post(`${this.baseUri}/user/create`, { username, firstname, lastname, hashword });
+	
   }
 
   // Pull all time associated with a specific user

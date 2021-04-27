@@ -43,15 +43,16 @@ export class FriendsComponent implements OnInit {
 
   addFriend(): void {
     let usernameinput = (document.getElementById("username") as HTMLInputElement).value;
-	alert("gonna do the thing");
+	//alert("gonna do the thing");
 	this.apiService.findUser(usernameinput).subscribe((data) => {
-		alert("yeet");
-		if(data._id < 0) {
+		//alert(typeof(data));
+		if(data == "") {
         	alert("Could not find the user");
       	}else{
 		  	alert("found the user");
 			  //add friendo
-			  
+			this.apiService.addFriend(data[0]._id).subscribe();
+
         //sessionStorage.setItem("_id", data._id);
 		//this.router.navigate(['/timer']);
       	}

@@ -69,7 +69,7 @@ export class ApiService {
 
   // Pull all friends associated with a specific user
   findUser(user_fname: string | null): Observable<any> {
-    alert("plop");
+    //alert("plop");
     return this.http.get(`${this.baseUri}/user/find/${user_fname}`);
   }
 

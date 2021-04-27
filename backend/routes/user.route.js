@@ -51,6 +51,31 @@ userRoute.route('/user/login').post((req, res, next) => {
 });
 
 
+// Get All Friends for User
+userRoute.route('/user/friends:user_id').get((req, res) => {
+  user.find({ user_id: req.params.user_id }, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data.user_friendid);
+    }
+  })
+})
+
+// Find a User
+userRoute.route('/user/find/:user_fname').get((req, res) => {
+  alert("pip");
+  user.find({ user_fname: req.params.user_fname }, (error, data) => {
+    if (error) {
+      alert("oop");
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  })
+})
+
+
 
 
 module.exports = userRoute;

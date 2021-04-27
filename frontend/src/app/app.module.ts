@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { StatsComponent } from './stats/stats.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignUpComponent } from './signUp/signUp.component';
+import { FriendsComponent } from './friends/friends.component';
 
 import { ApiService } from './service/api.service';
 
@@ -19,7 +20,8 @@ import { ApiService } from './service/api.service';
     LoginComponent,
     SignUpComponent,
     StatsComponent,
-    ProfileComponent
+    ProfileComponent,
+    FriendsComponent,
   ],
   imports: [
     BrowserModule,

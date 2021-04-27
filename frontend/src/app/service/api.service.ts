@@ -62,6 +62,17 @@ export class ApiService {
     return this.http.get(`${this.baseUri}/time/${user_id}`);
   }
 
+  // Pull all friends associated with a specific user
+  getUserFriends(user_id: string | null): Observable<any> {
+    return this.http.get(`${this.baseUri}/user/friends/${user_id}`);
+  }
+
+  // Pull all friends associated with a specific user
+  findUser(user_fname: string | null): Observable<any> {
+    alert("plop");
+    return this.http.get(`${this.baseUri}/user/find/${user_fname}`);
+  }
+
   // Adds a time to the time database
   addTime(user_id: string | null, time: any): Observable<any> {
     return this.http.post(`${this.baseUri}/time/create`, { user_id, time });

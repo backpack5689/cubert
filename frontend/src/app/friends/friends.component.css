@@ -1,0 +1,35 @@
+/*  Class CSS 
+    9090CC2, 084887, F58A07, F9AB55, F7F5FB */
+.navbar{
+  background-color: #F7F5FB;
+  padding: 1px;
+}
+li{
+  list-style-type: none;
+  display: inline;
+}
+li a{
+  display: inline block;
+  padding: 12px;
+  font-size: 20px;
+  color: #000000;
+  text-decoration: none;
+}
+li a:hover{
+  background-color: #909CC2;
+  color: #FFFFFF;
+}
+
+
+
+
+.stats{
+  float: left;
+  text-align: center;
+  width: 78%;
+  border: 3px solid #F58A07;
+  border-radius: 10px;
+  background-color: #F58A07;
+  color: #FFFFFF;
+  font-size: 28px;
+}

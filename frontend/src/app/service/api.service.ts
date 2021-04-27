@@ -54,7 +54,7 @@ export class ApiService {
   createUser(username: string, firstname: string, lastname: string, password: string): Observable<any> {
     let hashword = Md5.hashStr(password);
     return this.http.post(`${this.baseUri}/user/create`, { username, firstname, lastname, hashword });
-	
+
   }
 
   // Pull all time associated with a specific user
@@ -76,5 +76,10 @@ export class ApiService {
   // Adds a time to the time database
   addTime(user_id: string | null, time: any): Observable<any> {
     return this.http.post(`${this.baseUri}/time/create`, { user_id, time });
+  }
+
+  addFriend(user_id: string | null, friend_id: string | null): Observable<any> {
+    alert("Through API");
+    return this.http.post(`${this.baseUri}/user/friend/add`, { user_id, friend_id });
   }
 }

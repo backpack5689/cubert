@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const userRoute = express.Router();
+const createError = require('http-errors');
+
 
 // User model
 let User = require('../models/User');
@@ -44,7 +46,7 @@ userRoute.route('/user/login').post((req, res, next) => {
 		  res.json({_id: data[0]._id});
         } else {
           res.json({_id: -1});
-        }  
+        }
 	  }
     }
   })
@@ -73,7 +75,27 @@ userRoute.route('/user/find/:user_fname').get((req, res) => {
   })
 })
 
-
+// Add a friend
+ userRoute.route('/user/friend/add/:user_id').get((req, res) => {
+   //console.log("Vibin");
+   User.find({user_id: req.params.user_id}, (error, placeholder) => {
+     console.log(placeholder);
+     if (error) {
+       return next(error);
+     } else {
+       //console.log("Made it to update");
+       req.params.friend_id += "," + placeholder.user_friendid;
+       User.update({user_id: req.params.user_id}, {$set: {user_friendid: req.params.friend_id}}, (error, data) => {
+         if (error){
+           return next(error);
+         } else {
+           //console.log("responding");
+           res.json(data);
+         }
+       })
+     }
+   })
+ })
 
 
 module.exports = userRoute;

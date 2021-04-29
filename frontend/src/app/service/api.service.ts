@@ -80,6 +80,6 @@ export class ApiService {
 
   addFriend(user_id: string | null, friend_id: string | null): Observable<any> {
     alert("Through API");
-    return this.http.post(`${this.baseUri}/user/friend/add`, { user_id, friend_id });
+    return this.http.post(`${this.baseUri}/user/friends/add`, { user_id, friend_id });
   }
 }

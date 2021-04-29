@@ -51,10 +51,14 @@ export class FriendsComponent implements OnInit {
       	}else{
 		  	alert("found the user");
 			  //add friendo
-        alert("adding friend...")
-        this.apiService.addFriend(sessionStorage.getItem("_id"), data[0]._id).subscribe()
-        //sessionStorage.setItem("_id", data._id);
-		//this.router.navigate(['/timer']);
+        	alert("adding friend...");
+        	this.apiService.addFriend(sessionStorage.getItem("_id"), data[0]._id).subscribe()
+        	alert("Friends should be added now");
+			this.apiService.findUser(usernameinput).subscribe((data) => {
+				alert(data);
+			});
+			//sessionStorage.setItem("_id", data._id);
+			//this.router.navigate(['/timer']);
       	}
 	});
   }

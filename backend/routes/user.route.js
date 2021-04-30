@@ -76,16 +76,21 @@ userRoute.route('/user/find/:user_fname').get((req, res) => {
 });
 
 // Add a friend
- userRoute.route('/user/friends/add').get((req, res) => {
+ userRoute.route('/user/friends/add').post((req, res) => {
    console.log("Vibin");
-   User.find({user_id: req.body.user_id}, (error, placeholder) => {
+ 
+   User.find({_id: req.body.user_id}, (error, placeholder) => {
      console.log(placeholder);
      if (error) {
        return next(error);
      } else {
        console.log("Made it to update");
-       req.body.friend_id += "," + placeholder.user_friendid;
-       User.update({user_id: req.body.user_id}, {$set: {user_friendid: req.body.friend_id}}, (error, data) => {
+
+       if(placeholder[0].user_friendid != null)
+       {
+        req.body.friend_id += "," + placeholder[0].user_friendid;
+       }
+        User.updateOne({ _id: req.body.user_id }, { $set: { user_friendid: req.body.friend_id }}, (error, data) => {
          if (error){
            return next(error);
          } else {

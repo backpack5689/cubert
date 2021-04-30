@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const timeRoute = express.Router();
+const createError = require('http-errors');
 
 // User model
 let Time = require('../models/Time');
@@ -13,8 +14,8 @@ timeRoute.route('/time/create').post((req, res, next) => {
     } else {
       res.json(data);
     }
-  })
-})
+  });
+});
 
 // Get All Times for User
 timeRoute.route('/time/:user_id').get((req, res) => {
@@ -24,8 +25,8 @@ timeRoute.route('/time/:user_id').get((req, res) => {
     } else {
       res.json(data);
     }
-  })
-})
+  });
+});
 
 
 module.exports = timeRoute;

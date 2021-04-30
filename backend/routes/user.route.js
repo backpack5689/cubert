@@ -15,8 +15,8 @@ userRoute.route('/user/create').post((req, res, next) => {
     } else {
       res.json(data);
     }
-  })
-})
+  });
+});
 
 // Get All Employees
 userRoute.route('/user/').get((req, res) => {
@@ -26,8 +26,8 @@ userRoute.route('/user/').get((req, res) => {
     } else {
       res.json(data);
     }
-  })
-})
+  });
+});
 
 // login
 userRoute.route('/user/login').post((req, res, next) => {
@@ -49,7 +49,7 @@ userRoute.route('/user/login').post((req, res, next) => {
         }
 	  }
     }
-  })
+  });
 });
 
 
@@ -61,8 +61,8 @@ userRoute.route('/user/friends/:user_id').get((req, res) => {
     } else {
       res.json(data.user_friendid);
     }
-  })
-})
+  });
+});
 
 // Find a User
 userRoute.route('/user/find/:user_fname').get((req, res) => {
@@ -72,30 +72,30 @@ userRoute.route('/user/find/:user_fname').get((req, res) => {
     } else {
       res.json(data);
     }
-  })
-})
+  });
+});
 
 // Add a friend
- userRoute.route('/user/friend/add/:user_id').get((req, res) => {
-   //console.log("Vibin");
-   User.find({user_id: req.params.user_id}, (error, placeholder) => {
+ userRoute.route('/user/friends/add').get((req, res) => {
+   console.log("Vibin");
+   User.find({user_id: req.body.user_id}, (error, placeholder) => {
      console.log(placeholder);
      if (error) {
        return next(error);
      } else {
-       //console.log("Made it to update");
-       req.params.friend_id += "," + placeholder.user_friendid;
-       User.update({user_id: req.params.user_id}, {$set: {user_friendid: req.params.friend_id}}, (error, data) => {
+       console.log("Made it to update");
+       req.body.friend_id += "," + placeholder.user_friendid;
+       User.update({user_id: req.body.user_id}, {$set: {user_friendid: req.body.friend_id}}, (error, data) => {
          if (error){
            return next(error);
          } else {
-           //console.log("responding");
+           console.log("responding");
            res.json(data);
          }
-       })
+       });
      }
-   })
- })
+   });
+ });
 
 
 module.exports = userRoute;

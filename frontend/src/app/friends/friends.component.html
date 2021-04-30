@@ -21,7 +21,7 @@
   </form>
   <div class="stats">
 	<div *ngFor="let userFriend of userFriends">
-	  <p>{{userFriend.friend_completefriend}}</p>
+	  <p><button (click) = "goToStats(userFriend._id)">{{userFriend.user_fname}} {{userFriend.user_lname}}</button></p>
 	</div>
   </div>
 </body>

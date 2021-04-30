@@ -29,6 +29,7 @@ export class SignUpComponent implements OnInit {
     if (passwordinput == confirmpasswordinput) {
       this.apiService.createUser(usernameinput, firstnameinput, lastnameinput, passwordinput).subscribe((data) => {
 		 sessionStorage.setItem("_id", data._id);
+         sessionStorage.setItem("_statId", data._id);
 	  });
       this.router.navigate(['/timer']);
     } else {

@@ -55,11 +55,26 @@ userRoute.route('/user/login').post((req, res, next) => {
 
 // Get All Friends for User
 userRoute.route('/user/friends/:user_id').get((req, res) => {
-  User.find({ user_id: req.params.user_id }, (error, data) => {
+  User.find({ _id: req.params.user_id }, (error, data) => {
     if (error) {
       return next(error);
     } else {
-      res.json(data.user_friendid);
+      if (data[0].user_friendid == "") {
+          res.json(null);
+          return
+      }
+      
+      var strFriends = data[0].user_friendid.split(",");
+      var friendQuery = [];
+      
+      var i;
+      for (i = 0; i < strFriends.length; i++) {
+          friendQuery.push({ _id: strFriends[i] });
+      }
+      
+      User.find({$or: friendQuery}, (err, dat) => {
+          res.json(dat);
+      });
     }
   });
 });
@@ -77,30 +92,27 @@ userRoute.route('/user/find/:user_fname').get((req, res) => {
 
 // Add a friend
  userRoute.route('/user/friends/add').post((req, res) => {
-   console.log("Vibin");
- 
    User.find({_id: req.body.user_id}, (error, placeholder) => {
-     console.log(placeholder);
      if (error) {
        return next(error);
      } else {
-       console.log("Made it to update");
-
+         console.log(placeholder[0].user_friendid);
        if(placeholder[0].user_friendid != null)
        {
-        req.body.friend_id += "," + placeholder[0].user_friendid;
+           if (placeholder[0].user_friendid != "") {
+               req.body.friend_id += ",";
+           }
+           req.body.friend_id += placeholder[0].user_friendid;
        }
         User.updateOne({ _id: req.body.user_id }, { $set: { user_friendid: req.body.friend_id }}, (error, data) => {
          if (error){
            return next(error);
          } else {
-           console.log("responding");
            res.json(data);
          }
        });
      }
    });
  });
-
 
 module.exports = userRoute;

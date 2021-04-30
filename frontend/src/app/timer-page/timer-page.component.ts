@@ -118,6 +118,7 @@ export class TimerPageComponent implements OnInit {
   // Log out
   logOut(): void {
 	  sessionStorage.removeItem("_id");
+      sessionStorage.removeItem("_statId");
 	  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 	  this.router.onSameUrlNavigation = 'reload';
 	  this.router.navigate([this.router.url]);

@@ -15,15 +15,10 @@
   <div class="stat_graph">
     <img src="assets/img/StatGraph.png" alt="A Dynamic Graph of Statistics" style="width: 90%; height: auto;">
   </div>
-  <div class="stats">
-    <p>Stat 1</p>
-    <p>Stat 2</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
+  <div class="stats" *ngIf="signedIn">
+	<div *ngFor="let userTime of userTimes">
+	  <p>{{userTime.time_completetime}}</p>
+	</div>
   </div>
   <div class="room_records">
     <p>Room Records</p>

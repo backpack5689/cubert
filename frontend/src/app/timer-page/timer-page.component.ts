@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { ApiService } from './../service/api.service';
@@ -12,6 +12,17 @@ export class TimerPageComponent implements OnInit {
 
   userTimes: any = [];
   signedIn: boolean = false;
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if(event.key == " ") {
+      if (this.isOn) {
+        this.stopTimer();
+      } else {
+        this.startTimer();
+      }
+    }
+  }
   
   // Timer variables
   displayedTime: string = "00:00.000"; // This variable is actually displayed on the page

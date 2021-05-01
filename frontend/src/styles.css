@@ -6,7 +6,7 @@ h1, h2, h3, p, li{
   font-family:Arial, Helvetica, sans-serif;
 }
 .navbar{
-  background-color: #F7F5FB;
+  background-color: #afafaf;
   padding: 1px;
 }
 li{
@@ -28,7 +28,7 @@ li a:hover{
 li button{
   display: inline block;
   font-size: 20px;
-  background-color: #F7F5FB;
+  background-color: #afafaf;
   color: #000000;
   text-decoration: none;
   border: none;

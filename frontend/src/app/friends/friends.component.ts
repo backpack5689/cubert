@@ -35,13 +35,16 @@ export class FriendsComponent implements OnInit {
 		if(data == "") {
         	alert("Could not find the user");
       	}else{
-		  	alert("found the user");
+		  	//alert("found the user");
 			  //add friendo
         	this.apiService.addFriend(sessionStorage.getItem("_id"), data[0]._id).subscribe();
 			//sessionStorage.setItem("_id", data._id);
 			//this.router.navigate(['/timer']);
       	}
 	});
+	this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+	  this.router.onSameUrlNavigation = 'reload';
+	  this.router.navigate([this.router.url]);
   }
   
   goToStats(friend_id: string): void {
@@ -58,7 +61,7 @@ export class FriendsComponent implements OnInit {
       sessionStorage.removeItem("_statId");
 	  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 	  this.router.onSameUrlNavigation = 'reload';
-	  this.router.navigate([this.router.url]);
+	  this.router.navigate(['timer']);
   }
 
 }

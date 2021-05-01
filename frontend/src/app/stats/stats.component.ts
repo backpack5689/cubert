@@ -79,4 +79,13 @@ export class StatsComponent implements OnInit {
       this.router.navigate(["timer"]);
   }
 
+  // Log out
+  logOut(): void {
+	  sessionStorage.removeItem("_id");
+      sessionStorage.removeItem("_statId");
+	  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+	  this.router.onSameUrlNavigation = 'reload';
+	  this.router.navigate(['timer']);
+  }
+
 }

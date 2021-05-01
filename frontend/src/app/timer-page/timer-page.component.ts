@@ -39,6 +39,16 @@ export class TimerPageComponent implements OnInit {
 			  this.userTimes = data;
 		  });
 	  }
+      
+      let scram = sessionStorage.getItem("scramble");
+      
+      if (scram === null) {
+          this.generateScramble();
+      }
+      
+      else if (scram !== null) {
+          this.scramble = scram;
+      }
   }
   
   // Timer Code ------------------------------------------------------
@@ -59,12 +69,22 @@ export class TimerPageComponent implements OnInit {
   }
   
   resetTimer(): void {
-	  this.apiService.addTime(sessionStorage.getItem("_id"), { time_scramble: this.scramble, time_completedate: new Date(), time_completetime: this.displayedTime, user_id: sessionStorage.getItem("_id") }).subscribe();
-	  this.apiService.getUserTimes(sessionStorage.getItem("_id")).subscribe((data) => {
-			  this.userTimes = data;
-		  });
-	  this.time = 0;
-	  this.update();
+      if (this.time != 0) {
+          this.apiService.addTime(sessionStorage.getItem("_id"), { time_scramble: this.scramble, time_completedate: new Date(), time_completetime: this.displayedTime, user_id: sessionStorage.getItem("_id") }).subscribe();
+          this.apiService.getUserTimes(sessionStorage.getItem("_id")).subscribe((data) => {
+                  this.userTimes = data;
+              });
+          this.time = 0;
+          this.update();
+      }
+      
+      // Refresh page
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+	  this.router.onSameUrlNavigation = 'reload';
+	  this.router.navigate([this.router.url]);
+      
+      // Get a new scramble
+      this.generateScramble();
   }
   
   update(): void {
@@ -111,6 +131,8 @@ export class TimerPageComponent implements OnInit {
 	  for (let i = 0; i < numMoves; i++) {
 		  this.scramble += this.possibleRotations[Math.floor(Math.random() * numPossibleRotations)];
 	  }
+      
+      sessionStorage.removeItem("scramble");
   }
   
   // --------------------------------------------------------------------

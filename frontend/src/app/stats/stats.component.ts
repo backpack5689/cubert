@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { Chart } from 'chart.js';
+import { Chart, registerables } from 'chart.js';
 
 import { ApiService } from './../service/api.service';
 
@@ -26,6 +26,7 @@ export class StatsComponent implements OnInit {
   
 
   ngOnInit(): void {
+      Chart.register(...registerables);
 	  this.signedIn = sessionStorage.getItem("_statId") !== null;
 	  if (this.signedIn) {
           // Fetch all of the user's times

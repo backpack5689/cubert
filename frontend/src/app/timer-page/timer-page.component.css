@@ -1,8 +1,8 @@
 /*  Class CSS 
     9090CC2, 084887, F58A07, F9AB55, F7F5FB */
 .navbar{
-  background-color: #F7F5FB;
-  padding: 1px;
+  background-color: #afafaf;
+  padding: 2px;
 }
 li{
   list-style-type: none;
@@ -41,7 +41,7 @@ li a:hover{
   border-radius: 10px;
   background-color: #084887;
   color: #FFFFFF;
-  font-size: 40px;
+  font-size: 60px;
 }
 
 

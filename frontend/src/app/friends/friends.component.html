@@ -13,23 +13,19 @@
       <li style="float: right;" *ngIf="signedIn"><a routerLink="/friends">Friends</a></li>
     </ul>
   </div>
-  <div class="scramble">
-    <p>{{scramble}}</p>
-	<button (click)="generateScramble()">Generate Scramble</button>
-  </div>
-  <div class="stats" *ngIf="signedIn">
-	<div *ngFor="let userTime of userTimes">
-	  <p>{{userTime.time_completetime}}</p>
+  <h1>Find Friends</h1>
+  <form>
+    <p>Friend's Name</p>
+    <input id="username">
+    <button type="button" (click)="addFriend()">Find</button>
+  </form>
+  <div class="stats">
+	<div *ngFor="let userFriend of userFriends">
+	  <p><button (click) = "goToStats(userFriend._id)">{{userFriend.user_fname}} {{userFriend.user_lname}}</button></p>
 	</div>
-  </div>
-  <div class="timer">
-    <p>{{displayedTime}}</p>
-	<button (click)="resetTimer()">Submit</button>
   </div>
 </body>
 <footer>
 
 
 </footer>
-
-<router-outlet></router-outlet>

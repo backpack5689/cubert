@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { ApiService } from './../service/api.service';
@@ -10,8 +10,19 @@ import { ApiService } from './../service/api.service';
 })
 export class TimerPageComponent implements OnInit {
 
-  Users: any = [];
+  userTimes: any = [];
   signedIn: boolean = false;
+
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if(event.key == " ") {
+      if (this.isOn) {
+        this.stopTimer();
+      } else {
+        this.startTimer();
+      }
+    }
+  }
   
   // Timer variables
   displayedTime: string = "00:00.000"; // This variable is actually displayed on the page
@@ -33,8 +44,22 @@ export class TimerPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-	  this.getUsers();
 	  this.signedIn = sessionStorage.getItem("_id") !== null;
+	  if (this.signedIn) {
+		  this.apiService.getUserTimes(sessionStorage.getItem("_id")).subscribe((data) => {
+			  this.userTimes = data;
+		  });
+	  }
+      
+      let scram = sessionStorage.getItem("scramble");
+      
+      if (scram === null) {
+          this.generateScramble();
+      }
+      
+      else if (scram !== null) {
+          this.scramble = scram;
+      }
   }
   
   // Timer Code ------------------------------------------------------
@@ -55,8 +80,22 @@ export class TimerPageComponent implements OnInit {
   }
   
   resetTimer(): void {
-	  this.time = 0;
-	  this.update();
+      if (this.time != 0) {
+          this.apiService.addTime(sessionStorage.getItem("_id"), { time_scramble: this.scramble, time_completedate: new Date(), time_completetime: this.displayedTime, user_id: sessionStorage.getItem("_id") }).subscribe();
+          this.apiService.getUserTimes(sessionStorage.getItem("_id")).subscribe((data) => {
+                  this.userTimes = data;
+              });
+          this.time = 0;
+          this.update();
+      }
+      
+      // Refresh page
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+	  this.router.onSameUrlNavigation = 'reload';
+	  this.router.navigate([this.router.url]);
+      
+      // Get a new scramble
+      this.generateScramble();
   }
   
   update(): void {
@@ -103,20 +142,16 @@ export class TimerPageComponent implements OnInit {
 	  for (let i = 0; i < numMoves; i++) {
 		  this.scramble += this.possibleRotations[Math.floor(Math.random() * numPossibleRotations)];
 	  }
+      
+      sessionStorage.removeItem("scramble");
   }
   
   // --------------------------------------------------------------------
   
-  // Stat Fetch Code ----------------------------------------------------
-  getUsers(): void {
-	  this.apiService.getUsers().subscribe((data) => {
-		  this.Users = data;
-	  });
-  }
-  
   // Log out
   logOut(): void {
 	  sessionStorage.removeItem("_id");
+      sessionStorage.removeItem("_statId");
 	  this.router.routeReuseStrategy.shouldReuseRoute = () => false;
 	  this.router.onSameUrlNavigation = 'reload';
 	  this.router.navigate([this.router.url]);

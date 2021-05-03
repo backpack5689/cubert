@@ -7,25 +7,18 @@
     <ul>
       <li><a routerLink="/timer">Home</a></li>
       <li><a routerLink="/stats">Stats</a></li>
-      <li style="float: right;"><a routerLink="/profile">Profile</a></li>
-      <li style="float: right;"><a href="logout.js">Logout</a></li>
+      <!-- <li style="float: right;"><a routerLink="/profile">Profile</a></li> -->
+      <li style="float: right;" *ngIf="signedIn"><button type="button" (click)="logOut()">Logout</button></li>
+      <li style="float: right;"><a routerLink="/friends">Friends</a></li>
     </ul>
   </div>
   <div class="stat_graph">
-    <img src="assets/img/StatGraph.png" alt="A Dynamic Graph of Statistics" style="width: 90%; height: auto;">
+    <canvas #canvas id="statChart">{{statChart}}</canvas>
   </div>
-  <div class="stats">
-    <p>Stat 1</p>
-    <p>Stat 2</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-    <p>Stat n</p>
-  </div>
-  <div class="room_records">
-    <p>Room Records</p>
+  <div class="stats" *ngIf="signedIn">
+	<div *ngFor="let userTime of userTimes">
+	  <p>{{userTime.time_completetime}} <button (click)="importScramble(userTime.time_scramble)">Attempt Scramble</button></p>
+	</div>
   </div>
 
 </body>

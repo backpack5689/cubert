@@ -1,7 +1,9 @@
 # Cubert
-A multiplayer rubiks cubing web app
+Hello, and welcome to Cubert! A rubiks cube timer website for those with friends!
 
-# Development
+Our website hopes to streamline the multiplayer process with friends competiting against others by making it easier to compare times, send scrambles to your friends, and even
+
+## Development
 
 * run "npm install" in both /frontent and /backend
 * in /backend run "mongod" as well as "nodemon server"

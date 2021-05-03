@@ -29,9 +29,14 @@ export class LoginComponent implements OnInit {
         alert("Account unavailable.");
       }else{
         sessionStorage.setItem("_id", data._id);
+        sessionStorage.setItem("_statId", data._id);
 		this.router.navigate(['/timer']);
       }
 	  });
+  }
+
+  signUp(): void {
+    this.router.navigate(['/signUp'])
   }
 
 }

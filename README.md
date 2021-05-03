@@ -27,7 +27,7 @@ We host our website utilizing an AWS EC2 instance running Ubuntu Server OS. Our 
 If you are currently attempting to help with the development of this webapp, please see that the following items are true before submitting a merge request.
 
 **NOTE: Merge requests that do not have the following will not be accepted**
-* In ```frontend/service/api.service.ts```, you need to check the variable ```testinglocally``` is set to 0
+* In ```frontend/src/app/service/api.service.ts```, you need to check the variable ```testinglocally``` is set to 0
 * If your merge request contains a new package that would need to be installed with ```npm install```, your merge request needs to include a link to a video chat in which you will meet with a official cubert dev to go over the new package
 
 ***

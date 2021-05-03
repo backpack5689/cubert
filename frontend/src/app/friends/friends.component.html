@@ -7,7 +7,7 @@
     <ul>
       <li><a routerLink="/timer">Home</a></li>
       <li><a routerLink="/stats" *ngIf="signedIn">Stats</a></li>
-	  <li style="float: right;" *ngIf="signedIn"><a routerLink="/profile">Profile</a></li>
+	  <!-- <li style="float: right;" *ngIf="signedIn"><a routerLink="/profile">Profile</a></li> -->
 	  <li style="float: right;" *ngIf="!signedIn"><a routerLink="/login">Login</a></li>
       <li style="float: right;" *ngIf="signedIn"><button type="button" (click)="logOut()">Logout</button></li>
       <li style="float: right;" *ngIf="signedIn"><a routerLink="/friends">Friends</a></li>

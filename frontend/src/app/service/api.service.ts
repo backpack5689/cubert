@@ -12,7 +12,7 @@ import { ɵangular_packages_platform_browser_dynamic_platform_browser_dynamic_a 
 
 export class ApiService {
 
-  testinglocally:number = 1;
+  testinglocally:number = 0;
   baseUri:string = '';
 	headers = new HttpHeaders().set('Content-Type', 'application/json');
 
@@ -69,7 +69,6 @@ export class ApiService {
 
   // Pull all friends associated with a specific user
   findUser(user_fname: string | null): Observable<any> {
-    //alert("plop");
     return this.http.get(`${this.baseUri}/user/find/${user_fname}`);
   }
 
@@ -78,8 +77,8 @@ export class ApiService {
     return this.http.post(`${this.baseUri}/time/create`, { user_id, time });
   }
 
+  // Add a friend for a user
   addFriend(user_id: string | null, friend_id: string | null): Observable<any> {
-    //alert("Through API");
     return this.http.post(`${this.baseUri}/user/friends/add`, { user_id, friend_id });
   }
 }

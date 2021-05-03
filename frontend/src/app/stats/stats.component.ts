@@ -33,26 +33,12 @@ export class StatsComponent implements OnInit {
           // Fetch all of the user's times
 		  this.apiService.getUserTimes(sessionStorage.getItem("_statId")).subscribe((data) => {
 			  this.userTimes = data;
+              this.makeChart();
       });
-        let attempts = 0;
-
-        //If there is an issue grabbing the users times, throw an error informing
-        //them that there was an issue trying to grab it.
-        while(this.userTimes.length == 0)
-        {
-          setTimeout(this.makeChart, 5000)
-          attempts++;
-          if(attempts == 25)
-          {
-            alert("Error: Your times were unable to load. Please try again later.");
-            break;
-          }
-        }
-        this.makeChart();
 	  }
   }
 
-  makeChart(): void{
+  makeChart(): void {
     // Generate graph x-axis labels
     let labels = [];
     for (let i = 1; i <= this.userTimes.length; i++) {
@@ -62,16 +48,23 @@ export class StatsComponent implements OnInit {
       // Get actual times from this.userTimes
       let times = [];
       for (let i = 0; i < this.userTimes.length; i++) {
-        times.push(this.userTimes[i].time_completetime);
+        let strTime = this.userTimes[i].time_completetime;
+        let minSec = strTime.split(":");
+        let secMill = minSec[1].split(".");
+        
+        let minute = minSec[0];
+        let second = secMill[0];
+        let milli = secMill[1];
+        
+        let timeInSeconds = (+minute * 60) + (+second) + (+milli / 1000);
+        times.push(timeInSeconds);
       }
-      alert(times[0]);
-      alert(this.userTimes[0]);
       
       // Set up chart
       let data = {
         labels: labels,
         datasets: [{
-          label: "Times",
+          label: "Times (in seconds)",
           data: times,
           fill: false,
           borderColor: 'rgb(0, 0, 0)',
@@ -83,7 +76,7 @@ export class StatsComponent implements OnInit {
       if (this.canvas !== undefined) {
         console.log("Hello");
         const chart: Chart = new Chart(this.canvas.nativeElement, {
-          type: 'bar', data: data
+          type: 'line', data: data
         });
         
         this.statChart = chart;
